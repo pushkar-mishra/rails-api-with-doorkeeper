@@ -1,6 +1,10 @@
 module Api
   module V1    
     class PostsController < ApplicationController
+        
+      before_action only: [:create, :update, :destroy] do
+        doorkeeper_authorize!
+      end
       before_action :set_post, only: [:show, :edit, :update, :destroy]
       respond_to :json
     
